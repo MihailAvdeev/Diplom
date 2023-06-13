@@ -8,7 +8,7 @@ public class Image : MonoBehaviour
     public GameObject panel_Win;
     public GameObject panel_loz;
     [SerializeField]private bool _pos;
-
+    
     void OnMouseDown()
     {
         if (_pos)
