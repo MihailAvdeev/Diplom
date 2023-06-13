@@ -5,12 +5,13 @@ using UnityEngine;
 public class DataHolder : MonoBehaviour
 {
     public static DataHolder instance;
-    public static int Score;
+    
+    private int Score;
 
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (DataHolder.instance != null && DataHolder.instance != this)
             Destroy(this.gameObject);
         else
         {
@@ -18,4 +19,17 @@ public class DataHolder : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+    public void AddScore(int count)
+    {
+        Score += count;
+    }
+
+    public void ReduceScore(int count)
+    {
+        Score -= count;
+    }
+
+    public int GetScore() => Score;
+    
 }

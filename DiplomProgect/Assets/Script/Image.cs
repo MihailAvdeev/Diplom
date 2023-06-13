@@ -7,7 +7,10 @@ public class Image : MonoBehaviour
 {
     public GameObject panel_Win;
     public GameObject panel_loz;
-    [SerializeField]private bool _pos;
+    [SerializeField] private bool _pos;
+    [SerializeField] private int _winScore = 10;
+
+    private bool _pause;
     
     void OnMouseDown()
     {
@@ -29,15 +32,18 @@ public class Image : MonoBehaviour
     }
     void Update()
     {
-        if (Storage.HP == 0)
+        if (Storage.HP == 0 && !_pause)
         {
             panel_loz.SetActive(true);
             Time.timeScale = 0f;
+            _pause = true;
         } 
-        if (Storage.MaxCompleteCount == 10)
+        if (Storage.MaxCompleteCount == _winScore && !_pause)
         {
+            DataHolder.instance.AddScore(_winScore);
             panel_Win.SetActive(true);
             Time.timeScale = 0f;
+            _pause = true;
         }
     }
 }
